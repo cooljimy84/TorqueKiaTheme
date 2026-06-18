@@ -1,0 +1,83 @@
+#------------------------------------------------------------------------------
+# Kia Proceed Theme based on theme from
+# BMW E-Series Theme
+# by Dave Ginsbach
+#-------------------
+# Icons used:
+# "Coolant Temperature" by Ben Johnson
+# "Turbo Boost" by Ayub Irawan (https://thenounproject.com/ayub12)
+# "Torque" by Darin S (https://thenounproject.com/dsenneff)
+# "Air Tempt after IC" by Setyo Ari Wibowo (https://thenounproject.com/seochan.art)
+# "GPS Speed" by Royyan Wijaya
+# "Pressure Valve" by Ben Davis
+# "Fuel Flow" by Amy Morgan
+# Font used:
+# From Kia marketing website https://www.kia.com/au/discover-kia/brand-toolkit.html
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------>>>
+# Gauge & PID Config for 2019 Proceed Petrol
+#------------------------------------------------------------------------------>>>
+# PID Name              PID         MIN         MAX             Remarks
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - >>>
+Engine RPM            0c          0           7000
+Coolant Temp.         05          -10         120
+Intake Man. Pres.     0b          -25         17
+Speed (OBD)           0d          0           88
+# Engine Temperature    2C100AF1    -10         120
+# Air Temp. after IC    2C10076F    -10         60
+# Oil Temperature       2C100458    -10         120
+
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+#   PID Specific Gauge Settings
+#------------------------------------------------------------------------------
+
+# Oil Temperature 2C100458
+hideTicks_2c100458=true
+renameTitle_2c100458=
+
+# Turbo Boost
+hideTicks_0b=true
+renameTitle_0b=
+
+#------------------------------------------------------------------------------
+# Global Settings
+#------------------------------------------------------------------------------
+
+#   Needle
+dialNeedleLength=3
+displayIndicatorColour=#ffffff
+
+#		Offsets
+dialNeedleValueTextOffset=65
+dialNeedleScaleTextOffset=60
+dialNeedleUnitTextOffset=60
+#dialNeedleTitleTextOffset=30 ####doesn't work
+
+#   Text Colour
+displayTextValueColour=#ffffff
+displayTextTitleColour=#ffffff
+
+#   Ticks
+displayTickColour=#ffffff
+dialTickStyle=0
+#dialTickInnerRadius=1.1
+#dialTickOuterRadius=1.4
+
+#No ticks until it works properly for custom pids
+#globalHideTicks=true
+dialTickInnerRadius=0
+dialTickOuterRadius=0
+
+#   Font
+globalFontScale=0.9
+globalTextRadius=0.9
+
+#   Dial Angles
+globalDialStartAngle=40
+globalDialStopAngle=40
+
+#   Flasher Colour
+showUpdateFlasher=false

@@ -1,0 +1,136 @@
+Welcome!
+
+1) License
+The whole theme, EXCEPT THE INCLUDED FONTS (font.ttf, valueFont.ttf), is provided as-is under the CC BY-SA 4.0 License
+See: https://creativecommons.org/licenses/by-sa/4.0/
+
+You are free to:
+Share — copy and redistribute the material in any medium or format
+Adapt — remix, transform, and build upon the material for any purpose, even commercially.
+ This license is acceptable for Free Cultural Works.
+The licensor cannot revoke these freedoms as long as you follow the license terms.
+Under the following terms:
+Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+
+ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+
+No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+Notices:
+You do not have to comply with the license for elements of the material in the public domain or where your use is permitted by an applicable exception or limitation.
+No warranties are given. The license may not give you all of the permissions necessary for your intended use. For example, other rights such as publicity, privacy, or moral rights may limit how you use the material.
+
+2) A few words beforehands
+
+!	!	!	!	!
+IMPORTANT: There's, as of now, apparently a bug in the current release that prevents loading of PID-specific dials right away. You need to tab out and tab in into Torque to have them displayed. 
+Simply push the "show recent apps" button on your device and select Torque. It will reload the whole design and all gauges have the correct backdrop.
+!	!	!	!	!
+
+This theme is designed with BMW N47 Diesel engines in mind but feel free to use it for other engines. Please be aware that the specific
+gauge images won't work on different engines until the PIDs and gauge image filenames have been modified to suit the ECU.
+You are entitled by the CC BY-SA License to modify this theme to your needs.
+
+2.1) PIDs
+First of all, copy the file "BMW N47 PIDs.csv" into ".torque\extendedpids\" so you are able to import the PIDs into Torque via:
+	Settings -> Manage extra PIDs/Sensors -> Menu:Add Predefined set -> Choose:"BMW N47 PIDs"
+
+2.2) Theme Files
+This theme consists of two sets: 
+		1) A daytime theme
+		2) A nighttime theme
+In order to use the automatic nighttime switching, you need to set up torque accordingly:
+	Settings -> Themes -> Enable:"Use a different theme at night"
+
+Now that this is done, copy the folders as follows:
+		1) Copy "themeDir" into .torque and overwrite everything when prompted.
+		2) Copy "themeDirNight" into .torque and overwrite everything when prompted.
+
+"themeDir" is the "daytime" theme while "themeDirNight" will be selected by Torque at night.
+
+
+3) Setting up your gauges
+Please adjust the min/max values of your gauges according to the following table. The scale will be misplaced if you don't do this.
+------------------------------------------------------------------------------>>>
+ Gauge & PID Config for N47 Diesel Engine
+------------------------------------------------------------------------------>>>
+ PID Name              PID         MIN         MAX             Remarks
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - >>>
+ Speed (OBD)           0d          0           240
+ Engine RPM            0c          0           6000
+ Intake Man. Pres.     ff1202      -0.5        1.6
+ Coolant Temp.         05          -40         120
+ Fuel Level            2C100384    0           51              On the E81 this is 51 Liters. Just top off and watch what the ECU reports. This dial has no background and is intended to be placed somewhere around the dashboard.
+ Fuel Pressure CR Bar  0x0123      0           2000            Representation in Bar is much more useful given the maximum capability of the CR Pump
+ Oil Temperature       2C100458    -40         120
+ Oil Distance Driven   2C10044C    0           10000           This really is when you want to change your oil on this engine. This dial has no background and is intended to be placed somewhere around the dashboard
+ Engine Temperature    2C100AF1    -40         120             Engine block temperature. Should be equal to water temperature. Therefore I skipped making a dial for this.
+ Actual Engine Torque  2C1007D1    -40         500             This value will drop to -40 when engine-braking. This WILL vary between different cars and models.
+ Air Temp. after IC    2C10076F    -40         100				This is the temperature reading after the intercooler. You will see a significant performance impact starting at 50°C
+
+
+4) Customizing
+You are most likely ending up in a situation where you want to use dynamic ticks and scales. These are currently switched off due to a situation where theme settings for custom PIDs are not properly processed.
+Open the "properties.txt" files from inside "themeDir" and look at the following Section:
+------------------------------------------------------
+#   Ticks
+displayTickColour=#ffffff
+dialTickStyle=0
+#dialTickInnerRadius=1.1
+#dialTickOuterRadius=1.4
+
+#No ticks until it works properly for custom pids
+#globalHideTicks=true
+dialTickInnerRadius=0
+dialTickOuterRadius=0
+-----------------------------------------------------
+
+Overwrite the section above with the following:
+
+-----------------------------------------------------
+#   Ticks
+displayTickColour=#ffffff
+dialTickStyle=0
+dialTickInnerRadius=1.1
+dialTickOuterRadius=1.4
+
+#No ticks until it works properly for custom pids
+#globalHideTicks=true
+#dialTickInnerRadius=0
+#dialTickOuterRadius=0
+----------------------------------------------------
+
+Repeat the steps for the "properties.txt" file inside "themeDirNight" with the following exception:
+Use:
+	displayTickColour=#FF160C
+Instead of:
+	displayTickColour=#ffffff
+	
+5) Using the correct PIDs for your ECU
+I will include new dials into the Google Drive folder at:
+https://drive.google.com/open?id=1UADW4jyPK5GulYxetK56YejhtWWYCu7Q
+
+Please check there first.
+
+If your BMW car isn't compatible but you want to use the theme anyway then you should have a look at here:
+https://docs.google.com/spreadsheets/d/1O0YGWJ116Iw3ahWbitswtLod-T42D8GbRRtfxiE1r84/edit?usp=sharing
+This is a complete list of Modes and PIDs but as of today it hasn't been completely decoded which means that some functions are resolved but most are not.
+You might be able to find the correct PID for your engine but this process is very complicated: You need to find the prefix: In this case it's "2C"
+
+6) "Could you please create a gauge for [PID]"?
+Of course - just write me a mail with the subject [BMWTorqueTheme] to david@ginsbach.eu with the following data:
+- What PID?
+- Optional: Icon
+- Amount of Ticks:
+	- How many "fat" ticks should be there?
+	- Amount of small ticks
+- Min/Max values
+- Optional: Safe/Danger Zones: 
+				- At which point is the value considered "concerning" or "dangerous"? [red zone, redline]
+				- At which point is the value considered "cold" [blue zone]
+				- At which point is the value considered safe? [no zoning or white if you prefer]
+
+7) Donations
+I'm doing this in my spare time as a car enthusiast and therefore I don't beg for donations but it's always nice to have a few extra bucks laying around.
+Please send donations via PayPal: https://www.paypal.me/DavidGinsbach
+
+
