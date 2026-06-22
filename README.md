@@ -5,5 +5,5 @@ This theme was clone from BMW E-Series Theme by Dave Ginsbach https://drive.goog
 
 See: https://creativecommons.org/licenses/by-sa/4.0/
 
-This theme has been tweaked to match the colour of the Kia 2019 proceed dashboard. I have also used AI (yuck i know) to upscale and clean the images a little to make them less square on my display.
+This theme has been tweaked to match the colour of the Kia 2019 proceed CD dashboard. I have also used AI (yuck i know) to upscale and clean the images a little to make them less square on my display.
 I will be adding custom PIDs with gauages to match at somepoint, when i have scanned the car fully.
